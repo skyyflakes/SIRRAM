@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romel Borja Mendoza | Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- LANDING SCREEN STYLING --- */
+.landing-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a365d 0%, #0d1b2e 100%); /* Deep Navy */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Stays on top of everything */
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.landing-content {
+    text-align: center;
+    color: #ffffff;
+    animation: fadeInScale 1s ease-out;
+}
+
+.landing-title {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    color: #f6ad55; /* Gold */
+}
+
+.landing-subtitle {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+/* THE VISIT BUTTON */
+.visit-portfolio-btn {
+    background: transparent;
+    color: #f6ad55;
+    border: 2px solid #f6ad55;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0 auto;
+}
+
+.visit-portfolio-btn:hover {
+    background: #f6ad55;
+    color: #1a365d;
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(246, 173, 85, 0.4);
+}
+
+/* UTILITY CLASSES FOR TRANSITION */
+.portfolio-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+}
+
+.portfolio-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+:root {
+    --bg-color: #f2f1ef;
+    --navy: #1a365d;
+    --white: #ffffff;
+    --gold: #f6ad55;
+    --text-main: #2d3748;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    background-color: var(--bg-color); 
+    font-family: 'Inter', sans-serif; 
+    color: var(--text-main); 
+    line-height: 1.6; 
+    overflow-x: hidden;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+/* --- PAGINATED INTRO STYLING --- */
+.intro-box {
+    position: relative;
+    overflow: hidden;
+    min-height: 250px; /* Ensures height consistency */
+}
+
+.intro-carousel {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 200%; /* Two pages */
+}
+
+.intro-page {
+    width: 50%; /* Each page takes half of the carousel width */
+    flex-shrink: 0;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.intro-page.active {
+    opacity: 1;
+}
+
+/* Arrow Styling */
+.arrow-nav {
+    margin-top: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Right arrow alignment */
+    gap: 10px;
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.arrow-nav:hover {
+    color: var(--gold);
+}
+
+.right-arrow {
+    width: 0; 
+    height: 0; 
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 12px solid var(--gold);
+    transition: transform 0.3s ease;
+}
+
+.left-arrow {
+    width: 0; 
+    height: 0; 
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 12px solid var(--gold);
+}
+
+.arrow-nav:hover .right-arrow {
+    transform: translateX(5px);
+}
+
+/* Left alignment for 'Back' button on page 2 */
+#page-2 .arrow-nav {
+    justify-content: flex-start;
+}
+
+/* --- PROFILE SECTION: PHOTO LEFT, TEXT RIGHT --- */
+.profile-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 60px;
+    margin-bottom: 20px; /* Reduced to bring content closer to the top */
+    padding-top: 10px;    /* Slightly drops the text to align with photos */
+    animation: fadeIn 1s ease;
+}
+
+.profile-intro {
+    flex: 1;
+    animation: slideFromRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+@keyframes slideFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.profile-intro h1 {
+    color: var(--navy);
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.intro-box {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(26, 54, 93, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+    border-left: 6px solid var(--navy); /* Signature Navy accent */
+}
+
+.intro-carousel {
+    display: flex;
+    transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+    width: 200%;
+}
+.intro-page {
+    width: 50%;
+    flex-shrink: 0;
+    padding: 0 10px;
+}
+.intro-page h2::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+}
+.intro-page p {
+    color: #4a5568;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+/* Arrow Styling */
+.arrow-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 50px;
+    background: rgba(246, 173, 85, 0.1); /* Soft Gold tint */
+}
+
+.arrow-nav:hover {
+    background: var(--navy);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.right-arrow, .left-arrow {
+    transition: transform 0.3s ease;
+}
+
+.arrow-nav:hover .right-arrow {
+    transform: translateX(5px);
+}
+
+.arrow-nav:hover .left-arrow {
+    transform: translateX(-5px);
+}
+/* Left alignment for 'Back' button on page 2 */
+#page-2 .arrow-nav {
+    justify-content: flex-start;
+}
+
+/* --- PHOTO STACK: LEFT ALIGNED & VISIBLE BACK --- */
+.photo-stack { 
+    position: relative; 
+    width: 400px; 
+    height: 380px; 
+    flex-shrink: 0;
+    animation: slideFromLeft 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.img-back { 
+    position: absolute; 
+    width: 310px; 
+    left: 80px; 
+    top: 30px; 
+    z-index: 1; 
+    opacity: 0.95; 
+    border-radius: 15px; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.6s ease;
+}
+
+.img-front { 
+    position: absolute; 
+    width: 290px; 
+    left: 0; 
+    top: 0; 
+    z-index: 2; 
+    border: 8px solid var(--white); 
+    border-radius: 15px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+    transition: transform 0.5s ease; 
+}
+
+.photo-stack:hover .img-front {
+    transform: translateX(-10px) rotate(-3deg);
+}
+
+.photo-stack:hover .img-back {
+    transform: translateX(20px) rotate(3deg);
+}
+
+/* --- NAVIGATION BUTTONS --- */
+/* --- PREMIUM NAVIGATION HUB --- */
+.nav-hub { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+    gap: 12px; 
+    margin-top: 80px; 
+    margin-bottom: 50px; 
+    position: relative;
+    z-index: 10;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.5); /* Soft background for contrast */
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+}
+
+.hub-btn { 
+    background: linear-gradient(135deg, var(--navy) 0%, #2c5282 100%);
+    color: var(--white); 
+    border: 2px solid var(--gold); 
+    padding: 15px 10px; 
+    border-radius: 12px; 
+    font-weight: 700; 
+    cursor: pointer; 
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 0.75rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(26, 54, 93, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover State */
+.hub-btn:hover { 
+    background: #2c5282; 
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(26, 54, 93, 0.3);
+    border-color: var(--white);
+    color: var(--gold);
+}
+
+/* ACTIVE BUTTON STYLE (When panel is open) */
+.hub-btn.active-btn {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--navy);
+    transform: scale(0.98);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.hub-btn:active {
+    transform: scale(0.95);
+}
+
+/* --- PANELS & GRIDS --- */
+.panel { 
+    background: var(--white); 
+    padding: 45px; 
+    border-radius: 25px; 
+    display: none; 
+    text-align: left; 
+    margin-top: 20px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+}
+
+.panel.active { display: block; animation: slideUp 0.5s ease; }
+
+h2 { color: var(--navy); margin-bottom: 25px; border-bottom: 2px solid var(--bg-color); padding-bottom: 10px; text-transform: uppercase; }
+/* --- TOOLS I USE BADGE STYLING --- */
+.tools-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.tool-badge {
+    background-color: var(--white);
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    padding: 8px 16px;
+    border-radius: 50px; /* Pill shape */
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.tool-badge:hover {
+    background-color: var(--navy);
+    color: var(--white);
+    border-color: var(--gold);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(26, 54, 93, 0.2);
+}
+
+/* Tool Image Styling */
+.tools-main-img {
+    width: 100%;
+    max-width: 850px;
+    display: block;
+    margin: 0 auto 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+/* --- EXECUTIVE TIMELINE STYLING --- */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px 0;
+}
+
+/* The vertical line */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--navy);
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    margin-left: -1.5px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* The timeline dots */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 12px;
+    background-color: var(--gold);
+    border: 3px solid var(--navy);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-content {
+    padding: 20px;
+    background-color: #f8fafc;
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--navy);
+    transition: 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateX(10px);
+    background: var(--white);
+    box-shadow: 0 8px 25px rgba(26, 54, 93, 0.1);
+}
+
+.timeline-date {
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+}
+
+.timeline-title {
+    color: var(--navy);
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.timeline-company {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    display: block;
+}
+/* --- SAMPLE JOBS SHOWCASE STYLING --- */
+.job-item {
+    background: #f8fafc;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 35px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.4s ease;
+}
+
+.job-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(26, 54, 93, 0.1);
+    border-color: var(--navy);
+}
+
+.job-item h3 {
+    color: var(--navy);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Gold decorative bar for headers */
+.job-item h3::before {
+    content: "";
+    width: 5px;
+    height: 25px;
+    background: var(--gold);
+    border-radius: 3px;
+}
+
+.job-photo {
+    width: 100%;
+    border-radius: 10px;
+    cursor: zoom-in; /* Indicates the image can be clicked to zoom */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.job-photo:hover {
+    opacity: 0.9;
+}
+
+/* --- WORK PORTFOLIO GRID --- */
+/* --- POLISHED WORK PORTFOLIO GRID --- */
+.work-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.work-item-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background: var(--white);
+    border: 4px solid var(--white);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: zoom-in;
+}
+
+.work-item-container img {
+    width: 100%;
+    height: 300px; /* Standardized height for a formal look */
+    object-fit: cover; /* Prevents stretching */
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+/* Hover Effects */
+.work-item-container:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
+    border-color: var(--gold);
+}
+
+.work-item-container:hover img {
+    transform: scale(1.08); /* Subtle zoom effect inside the card */
+}
+
+/* Label overlay that appears on hover */
+.work-item-container::after {
+    content: "View Full Project";
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    background: var(--navy);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: bottom 0.3s ease;
+}
+
+.work-item-container:hover::after {
+    bottom: 0;
+}
+/* --- CORE SKILLS GRID STYLING --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.skill-card {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    background: var(--white);
+    border-color: var(--gold);
+    box-shadow: 0 10px 20px rgba(26, 54, 93, 0.08);
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.skill-name {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+/* Proficiency Bar */
+.skill-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--navy), var(--gold));
+    border-radius: 10px;
+}
+
+/* --- PROFESSIONAL OFFERINGS GRID --- */
+.offer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.offer-card {
+    background: #f9f9f9;
+    padding: 18px;
+    border-radius: 12px;
+    border-left: 4px solid var(--navy);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.offer-card:hover {
+    transform: translateY(-5px);
+    background: var(--white);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.offer-card span {
+    color: var(--navy);
+    font-weight: bold;
+}
+/* --- PREMIUM CERTIFICATES STYLING --- */
+.cert-group {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.cert-group h3 {
+    color: var(--navy);
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gold);
+    display: inline-block;
+}
+
+.cert-list {
+    border-left: 2px solid #e2e8f0;
+    margin-left: 10px;
+    padding-left: 25px;
+}
+
+.cert-item {
+    position: relative;
+    background: #f8fafc;
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #edf2f7;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* The dot on the timeline */
+.cert-item::before {
+    content: "";
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border: 3px solid var(--white);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--navy);
+}
+
+.cert-item:hover {
+    transform: translateX(10px);
+    background: var(--white);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-color: var(--navy);
+}
+
+.cert-date {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--navy);
+    background: rgba(246, 173, 85, 0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin-left: 15px;
+}
+
+.cert-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* --- OTHER GRIDS --- */
+/* --- PRESTIGE ACHIEVEMENTS STYLING --- */
+.achievements-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.achievement-card {
+    flex: 1;
+    min-width: 320px;
+    max-width: 45%;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.achievement-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(26, 54, 93, 0.12);
+    border-color: var(--gold);
+}
+
+.achievement-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: contain; /* Ensures the whole certificate/photo is visible */
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 2px solid var(--bg-color);
+    margin-bottom: 20px;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
+
+.achievement-card:hover img {
+    transform: scale(1.02);
+}
+
+.achievement-card h4 {
+    color: var(--navy);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.achievement-card p {
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.achievement-card img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+
+.flex-img:hover, .achievement-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+
+.job-photo { width: 100%; border-radius: 10px; margin-top: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+
+/* --- WHAT MY CLIENT SAYS STYLING --- */
+.client-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    gap: 25px; 
+    margin-top: 20px;
+}
+
+.client-card { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    background: #f9f9f9; 
+    padding: 20px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.client-card:hover {
+    transform: translateY(-8px);
+    background: var(--white);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+.screenshot-img { 
+    width: 140px; 
+    height: auto;
+    border-radius: 10px; 
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+.client-content {
+    flex: 1;
+}
+
+.star-side { 
+    color: var(--gold); 
+    font-size: 1.3rem; 
+    letter-spacing: 2px; 
+    margin-bottom: 8px;
+    display: block;
+}
+
+.client-text {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.4;
+    margin: 0;
+}
+/* --- FULL VIEW MODAL STYLING --- */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark background */
+    cursor: zoom-out;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid var(--white);
+    border-radius: 10px;
+    animation: zoomIn 0.3s ease;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: var(--white);
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@keyframes zoomIn {
+    from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* Add a pointer to the small images to show they are clickable */
+.screenshot-img {
+    cursor: zoom-in;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 500px) {
+    .client-card { flex-direction: column; text-align: center; }
+    .screenshot-img { width: 100%; max-width: 200px; }
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 850px) {
+    .profile-wrapper { flex-direction: column-reverse; text-align: center; }
+    .profile-intro { text-align: center; }
+    .photo-stack { margin: 0 auto; width: 100%; max-width: 350px; height: 380px; }
+    .img-back { left: 40px; }
+    .flex-img, .achievement-card { width: 100%; }
+}
+
+    </style>
+</head>
+<body>
+<div id="landing-screen" class="landing-overlay">
+    <div class="landing-content">
+        <h1 class="landing-title">ROMEL BORJA MENDOZA</h1>
+        <p class="landing-subtitle">Virtual Assistant | BPO Professional | Academic Researcher</p>
+        
+        <button class="visit-portfolio-btn" onclick="enterPortfolio()">
+            Visit Portfolio <span class="btn-arrow">→</span>
+        </button>
+    </div>
+</div>
+
+<div id="main-portfolio-content" class="portfolio-hidden">
+    </div>
+<div class="container">
+    <section class="profile-wrapper">
+        <div class="photo-stack">
+            <img src="photo2.jpg" class="img-back" alt="Document Photo 2">
+            <img src="photo1.jpg" class="img-front" alt="Document Photo 1">
+        </div>
+
+      <div class="intro-box">
+    <div class="intro-carousel" id="intro-carousel">
+        <div class="intro-page active" id="page-1">
+            <h2>HI, I’M RAM</h2>
+            <p>Resourceful and detail-oriented professional with extensive experience in education, administration, and research. Adept at
+ managing schedules, coordinating communication, organizing data, and providing top-quality support in fast-paced environments.
+ Known for excellent time management, multitasking, and problem- solving skills, now seeking to apply these strengths in a Virtual
+   
+	Assistant role to help streamline business operations and enhance productivity.</p>
+            
+            <div class="arrow-nav" onclick="nextPage()">
+                <span>Professional Summary</span>
+                <div class="right-arrow"></div>
+            </div>
+        </div>
+
+       <div class="intro-page" id="page-2">
+    <h2>Meet Ram</h2>
+    <p>
+        <strong>Dedicated and versatile professional</strong> with 6 years of experience in the BPO industry, 
+        including customer service, sales, and technical support. Complemented by 1 year of experience 
+        as an <strong>Administrative Virtual Assistant</strong>, specializing in coordination, social media 
+        management, and appointment setting. 
+        <br><br>
+        Known for strong communication and adaptability, I am committed to optimizing workflows 
+        and enhancing business efficiency for my clients.
+    </p>
+    
+    <div class="arrow-nav" onclick="prevPage()" style="justify-content: flex-start;">
+        <div class="left-arrow"></div>
+        <span>Go Back</span>
+    </div>
+</div>
+    </div>
+</div>
+    </section>
+
+    <nav class="nav-hub">
+        <button class="hub-btn" onclick="openP('tools')">Tools I Use</button>
+        <button class="hub-btn" onclick="openP('exp')">Experiences</button>
+        <button class="hub-btn" onclick="openP('jobs')">Sample Jobs</button>
+        <button class="hub-btn" onclick="openP('work')">Sample Work</button>
+        <button class="hub-btn" onclick="openP('skills')">Core Skills</button>
+        <button class="hub-btn" onclick="openP('offer')">What I Can Offer</button>
+        <button class="hub-btn" onclick="openP('achieve')">Achievements</button>
+        <button class="hub-btn" onclick="openP('certs')">Certs & Trainings</button>
+        <button class="hub-btn" onclick="openP('clients')">What Clients Say</button>
+    </nav>
+
+   <div id="tools" class="panel">
+    <h2>Tools I Use</h2>
+    
+    <img src="tools-main.jpg" class="tools-main-img" alt="Tools Overview">
+
+    <div class="tools-container">
+        <span class="tool-badge">Gmail</span>
+        <span class="tool-badge">Google Meet</span>
+        <span class="tool-badge">Microsoft Word</span>
+        <span class="tool-badge">Microsoft Excel</span>
+        <span class="tool-badge">Microsoft PowerPoint</span>
+        <span class="tool-badge">Instagram</span>
+        <span class="tool-badge">Chat GPT</span>
+        <span class="tool-badge">Zoom</span>
+        <span class="tool-badge">TikTok</span>
+        <span class="tool-badge">Outlook</span>
+        <span class="tool-badge">Google Workspace</span>
+        <span class="tool-badge">Asana</span>
+        <span class="tool-badge">WhatsApp</span>
+        <span class="tool-badge">MS Teams</span>
+        <span class="tool-badge">Canva</span>
+        <span class="tool-badge">ClickUp</span>
+        <span class="tool-badge">HubSpot</span>
+        <span class="tool-badge">Slack</span>
+        <span class="tool-badge">Trello</span>
+        <span class="tool-badge">Calendly</span>
+    </div>
+</div>
+
+   <div id="exp" class="panel">
+    <div style="text-align: center;">
+        <img src="my-exp-photo.jpg" style="width:180px; height:180px; border-radius:50%; border:5px solid var(--navy); margin-bottom:20px; object-fit: cover; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+    </div>
+    
+    <h2 style="text-align: center;">Career History</h2>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="timeline-date">2025 - PRESENT</span>
+                <h3 class="timeline-title">B2B Virtual Assistant</h3>
+                <span class="timeline-company">LTS Chicago J&J Solution</span>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="timeline-date">2023</span>
+                <h3 class="timeline-title">Research School Vice Principal</h3>
+                <span class="timeline-company">STI College</span>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="timeline-date">2021 – 2023</span>
+                <h3 class="timeline-title">Senior Account Specialist II (Mortgage)</h3>
+                <span class="timeline-company">JPMorgan Chase Bank & Co</span>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="timeline-date">2021 - 2022</span>
+                <h3 class="timeline-title">Healthcare Account Representative</h3>
+                <span class="timeline-company">Optum Global Solutions</span>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="timeline-date">2019 – 2021</span>
+                <h3 class="timeline-title">Technical Support Representative (AT&T)</h3>
+                <span class="timeline-company">Teleperformance</span>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="timeline-date">2018 – 2019</span>
+                <h3 class="timeline-title">Collection Specialist (Credit One Bank)</h3>
+                <span class="timeline-company">Alorica Inc.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div id="jobs" class="panel">
+    <h2>Sample Jobs</h2>
+    
+    <div class="job-item">
+        <h3>EMAIL MANAGEMENT</h3>
+        <img src="email-job1.jpg" class="job-photo" alt="Email Management Sample" onclick="zoomImage(this)">
+    </div>
+
+    <div class="job-item">
+        <h3>STREAMLINED CALENDAR & APPOINTMENT COORDINATION</h3>
+        <img src="calendar-job1.jpg" class="job-photo" alt="Calendar Coordination Sample" onclick="zoomImage(this)">
+    </div>
+
+    <div class="job-item">
+        <h3>LEAD GENERATION</h3>
+        <img src="lead-job1.jpg" class="job-photo" alt="Lead Generation Sample" onclick="zoomImage(this)">
+    </div>
+
+    <div class="job-item">
+        <h3>SOCIAL MEDIA MANAGEMENT</h3>
+        <img src="social-job1.jpg" class="job-photo" alt="Social Media Management Sample" onclick="zoomImage(this)">
+    </div>
+</div>
+
+<div id="work" class="panel">
+    <h2>Sample Work Portfolio</h2>
+    <p style="margin-bottom: 25px; color: #666; font-style: italic;">A collection of administrative, research, and creative projects. Click any image to view in full detail.</p>
+    
+    <div class="work-portfolio-grid">
+        <div class="work-item-container" onclick="zoomImage(this.querySelector('img'))">
+            <img src="work1.jpg" alt="Administrative Support Sample">
+        </div>
+
+        <div class="work-item-container" onclick="zoomImage(this.querySelector('img'))">
+            <img src="work2.jpg" alt="Research and Documentation Sample">
+        </div>
+
+        </div>
+</div>
+
+       <div id="skills" class="panel">
+    <h2>Core Skills I Have</h2>
+    <div class="skills-grid">
+        <div class="skill-card">
+            <div class="skill-header">
+                <span class="skill-name">Administrative Support & Data Entry</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 95%;"></div>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-header">
+                <span class="skill-name">Email & Calendar Management</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 90%;"></div>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-header">
+                <span class="skill-name">Customer Service & Client Relations</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 95%;"></div>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-header">
+                <span class="skill-name">Research & Documentation</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 85%;"></div>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-header">
+                <span class="skill-name">Task Coordination & Reporting</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 88%;"></div>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-header">
+                <span class="skill-name">Communication & Team Collaboration</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 92%;"></div>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-header">
+                <span class="skill-name">Social Media Management (Basic)</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 70%;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="achieve" class="panel">
+    <h2>Academic & Professional Achievements</h2>
+    <div class="achievements-grid">
+        <div class="achievement-card">
+            <img src="ach-2.jpg" alt="Bachelor's Degree" onclick="zoomImage(this)">
+            <h4>Bachelor of Secondary Education</h4>
+            <p>Major in English | 2015-2020</p>
+            <p style="font-size: 0.8rem; margin-top: 5px;">Holy Rosary College Foundation Inc.</p>
+        </div>
+
+        <div class="achievement-card">
+            <img src="ach-1.jpg" alt="Royal Institute Membership" onclick="zoomImage(this)">
+            <h4>Member Royal Institute (MRIEdr)</h4>
+            <p>Royal Institute of Singapore | 2025</p>
+        </div>
+    </div>
+
+</div>
+
+   <div id="offer" class="panel">
+    <h2>Professional Offerings</h2>
+    
+    <div class="offer-grid">
+        <div class="offer-card"><span>✔</span><p>Handle client communications and coordinated with business partners to manage inquiries, quotations, and follow-ups efficiently.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Maintain accurate client records and reports using CRM tools and spreadsheets to track sales progress and performance.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Prepare and organize sales documents, proposals, and presentations for client meetings and internal reporting.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Manage customer accounts, handle escalations, and provide high-level client support for banking inquiries.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Conduct research lectures through project documentation.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Manage systems, reports, and digital records using Excel and Google Sheets.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Organize seminars, handle communications, and support event logistics.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Provide advanced technical assistance and troubleshooting for complex system issues.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Managed outbound and inbound calls with professional etiquette and efficient resolution.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Collaborate with cross-functional teams to resolve complex account issues and improve client satisfaction.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Assist with insurance claims, benefits verification, and detailed account inquiries.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Handle confidential medical and billing information in strict compliance with HIPAA regulations.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Train and guide new hires on product knowledge, call handling, and system processes.</p></div>
+        
+        <div class="offer-card"><span>✔</span><p>Monitor team performance and ensure high-quality service delivery aligned with client standards.</p></div>
+    </div>
+</div>
+<div id="certs" class="panel">
+    <h2>Certificates, Trainings & Seminars</h2>
+
+    <div class="cert-group">
+        <h3>University of the Philippines</h3>
+        <div class="cert-list">
+            <div class="cert-item"><span class="cert-text">Basic Resilience</span><span class="cert-date">Feb 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Gender Sensitivity</span><span class="cert-date">Mar 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Introduction to Open Distance e-Learning</span><span class="cert-date">Mar 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Basic Analytics: Concepts and Framework</span><span class="cert-date">Apr 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Business Analytics: Concepts and Framework</span><span class="cert-date">Apr 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Strategic Planning in ODEL</span><span class="cert-date">Apr 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Understanding the Child Better</span><span class="cert-date">Apr 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Introduction to Technology for Teaching and Learning</span><span class="cert-date">June 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Learner Support in ODEL</span><span class="cert-date">June 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Legal Instruments for the Protection of Children</span><span class="cert-date">June 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Teaching and Learning with Modern ICTs</span><span class="cert-date">June 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Blended Teaching and Learning Using OERs</span><span class="cert-date">July 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Scriptwriting for Educational Video Materials</span><span class="cert-date">July 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Video Editing Using Open-Source Software</span><span class="cert-date">Dec 2024</span></div>
+        </div>
+    </div>
+
+    <div class="cert-group">
+        <h3>TESDA</h3>
+        <div class="cert-list">
+            <div class="cert-item"><span class="cert-text">Participating in Workplace Communication</span><span class="cert-date">May 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Receiving and Responding to Workplace Communication</span><span class="cert-date">May 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Introduction to Caregiving</span><span class="cert-date">May 2024</span></div>
+            <div class="cert-item"><span class="cert-text">Recognizing the Aging Process</span><span class="cert-date">May 2024</span></div>
+        </div>
+    </div>
+
+    <div class="cert-group">
+        <h3>Hai English International</h3>
+        <div class="cert-list">
+            <div class="cert-item"><span class="cert-text">TEFL, TESOL, TESL Certifications</span><span class="cert-date">June 2025</span></div>
+            <div class="cert-item"><span class="cert-text">English 101 & Basic English II</span><span class="cert-date">June 2025</span></div>
+            <div class="cert-item"><span class="cert-text">Teaching English to Young Learners</span><span class="cert-date">June 2025</span></div>
+        </div>
+    </div>
+
+    <div class="cert-group">
+        <h3>Professional Seminars & Workshops</h3>
+        <div class="cert-list">
+            <div class="cert-item"><span class="cert-text">News Writing Seminar</span><span class="cert-date">June 2015</span></div>
+            <div class="cert-item"><span class="cert-text">Classroom Management</span><span class="cert-date">Feb 2016</span></div>
+            <div class="cert-item"><span class="cert-text">21st Century Learner</span><span class="cert-date">Sept 2016</span></div>
+            <div class="cert-item"><span class="cert-text">Mastery: Behaviour and Psychology Essentials</span><span class="cert-date">Feb 2024</span></div>
+        </div>
+    </div>
+
+    <div class="cert-group">
+        <h3>Community Involvement</h3>
+        <div class="cert-list">
+            <div class="cert-item">
+                <span class="cert-text"><strong>Sangguniang Kabataan Chairperson</strong><br>Barangay 187</span>
+                <span class="cert-date">2016 - 2018</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+   <div id="clients" class="panel">
+    <h2>What My Client Says</h2>
+    <div class="client-grid">
+        <div class="client-card">
+            <img src="client-shot1.jpg" class="screenshot-img" alt="Client Appreciation Letter" onclick="zoomImage(this)">
+            <div class="client-content">
+                <span class="star-side">★★★★★</span>
+                <p class="client-text">"I would like to extend my appreciation to Romel Mendoza for his outstanding consistency and dedication to delivering high-quality work. His reliability, professionalism, and strong work ethic make a significant impact on every task he handles."</p>
+            </div>
+        </div>
+
+        <div class="client-card">
+            <img src="client-shot2.jpg" class="screenshot-img" alt="Performance Feedback Chat" onclick="zoomImage(this)">
+            <div class="client-content">
+                <span class="star-side">★★★★★</span>
+                <p class="client-text">"Thanks Ram, for being consistent." — Feedback from performance review chat dated November 28, 2025.</p>
+            </div>
+        </div>
+
+        <div class="client-card">
+            <img src="client-shot3.jpg" class="screenshot-img" alt="Professional Recommendation" onclick="zoomImage(this)">
+            <div class="client-content">
+                <span class="star-side">★★★★★</span>
+                <p class="client-text">"I enthusiastically recommend Ram! He excels in radical proactiveness, exceptional remote communication, and project management. He didn’t just wait for tasks; he anticipated roadblocks." — Justine Veronica, Mentor.</p>
+            </div>
+        </div>
+
+        <div class="client-card">
+            <img src="client-shot4.jpg" class="screenshot-img" alt="Talent Acquisition Commendation" onclick="zoomImage(this)">
+            <div class="client-content">
+                <span class="star-side">★★★★★</span>
+                <p class="client-text">"I am thrilled to give Romel Mendoza a 100/10 star commendation for his exceptional work! He consistently demonstrates excellence and goes above and beyond expectations." — Mary Francis Patindol, PSG Global Solutions.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="imageModal" class="modal-overlay" onclick="closeImage()">
+    <span class="close-btn">&times;</span>
+    <img class="modal-content" id="fullImage">
+</div>
+
+<script>
+    function enterPortfolio() {
+    const landing = document.getElementById('landing-screen');
+    const content = document.getElementById('main-portfolio-content');
+
+    // Hide the landing screen
+    landing.style.opacity = '0';
+    landing.style.visibility = 'hidden';
+
+    // Show the portfolio with a smooth fade-in
+    content.classList.add('portfolio-visible');
+    
+    // Optional: Play your profile slide animations once entered
+    if (typeof slideFromLeft === "function") {
+        slideFromLeft(); 
+    }
+}
+   function openP(id) {
+    // 1. Close all panels
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    
+    // 2. Remove 'active-btn' style from all buttons
+    document.querySelectorAll('.hub-btn').forEach(btn => btn.classList.remove('active-btn'));
+
+    // 3. Show selected panel
+    document.getElementById(id).classList.add('active');
+
+    // 4. Add 'active-btn' class to the button that was clicked
+    // We find the button that has the onclick attribute matching the ID
+    const clickedBtn = document.querySelector(`button[onclick*="'${id}'"]`);
+    if (clickedBtn) clickedBtn.classList.add('active-btn');
+
+    // 5. Smooth scroll to the content
+    window.scrollTo({ 
+        top: document.getElementById(id).offsetTop - 20, 
+        behavior: 'smooth' 
+    });
+}
+function nextPage() {
+    const carousel = document.getElementById("intro-carousel");
+    const p1 = document.getElementById("page-1");
+    const p2 = document.getElementById("page-2");
+
+    carousel.style.transform = "translateX(-50%)"; // Slide to second page
+    p1.classList.remove("active");
+    p2.classList.add("active");
+}
+
+function prevPage() {
+    const carousel = document.getElementById("intro-carousel");
+    const p1 = document.getElementById("page-1");
+    const p2 = document.getElementById("page-2");
+
+    carousel.style.transform = "translateX(0%)"; // Slide back to first page
+    p2.classList.remove("active");
+    p1.classList.add("active");
+}
+
+function zoomImage(imgElement) {
+    const modal = document.getElementById("imageModal");
+    const fullImg = document.getElementById("fullImage");
+    
+    modal.style.display = "block";
+    fullImg.src = imgElement.src; // Sets the source to the clicked image
+}
+
+function closeImage() {
+    const modal = document.getElementById("imageModal");
+    modal.style.display = "none";
+}
+</script>
+<div id="imageModal" class="modal-overlay" onclick="closeImage()">
+    <span class="close-btn">&times;</span>
+    <img class="modal-content" id="fullImage">
+</div>
+</body>
+</html>
